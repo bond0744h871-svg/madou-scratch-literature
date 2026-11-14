@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Noto+Serif+TC:wght@600;800&display=swap');
+:root{color-scheme:light;--paper:#f8f3e8;--ink:#172e30;--accent:#285b56;--muted:#465d56;--line:#d6caba;--cream:#fffcf6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.8 "Noto Sans TC","Microsoft JhengHei",sans-serif}
+a{color:var(--accent);text-underline-offset:.22em}
+.wrap{width:min(1160px,calc(100% - 48px));margin-inline:auto}
+.top{min-height:75px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top>a{font-weight:700;text-decoration:none}
+nav,.actions,.lesson-nav{display:flex;gap:12px 20px;flex-wrap:wrap}
+.hero{display:grid;grid-template-columns:.78fr 1.22fr;align-items:center;gap:42px;padding-block:56px 47px}
+.meta,figcaption{color:var(--muted);font-size:.9rem}
+h1,h2{font-family:"Noto Serif TC",serif;line-height:1.2;margin:0 0 .45em}
+h1{font-size:clamp(3.1rem,6.6vw,6.4rem);font-weight:800;letter-spacing:-.05em}
+h2{font-size:clamp(2rem,4vw,3.2rem)}
+h3{line-height:1.45;margin:0 0 .6em}
+p{margin:0 0 1em}.intro{max-width:38rem;font-size:1.08rem}
+figure{margin:0}figure img{display:block;width:100%;height:auto;aspect-ratio:1.35;object-fit:cover;border-radius:8px}
+figcaption{margin-top:.5em}
+.button{border:1px solid var(--accent);background:var(--accent);color:white;padding:.55em .95em;text-decoration:none;border-radius:4px;font-weight:700}
+.button.outline{background:transparent;color:var(--accent)}
+.section{border-top:1px solid var(--line);padding-block:42px}
+.reading,.columns{display:grid;grid-template-columns:1fr 1fr;gap:20px 34px}
+.reading article{border-left:3px solid #b68b57;padding-left:16px}.reading p{margin:0}
+.inline-links{margin-top:22px}
+.lesson-nav{padding:10px 0 20px}
+.module{margin:12px 0 28px;background:var(--cream);padding:20px 24px;border:1px solid var(--line);border-radius:8px}
+.module small{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.3em}
+.check{color:var(--muted)}
+details{border-top:1px solid var(--line);scroll-margin-top:16px}
+summary{cursor:pointer;font-weight:700;padding:12px 0}summary span{margin:0 .8em;color:var(--accent)}
+.inside{padding:0 6px 10px}dt{font-weight:700}dd{margin:0 0 .75em}
+ol{padding-left:1.6em}.columns ol{margin-top:0}li+li{margin-top:.36em}
+footer{border-top:1px solid var(--line);padding-block:22px 34px}
+:focus-visible{outline:3px solid #a25c27;outline-offset:3px}
+@media(max-width:740px){.wrap{width:calc(100% - 32px)}.hero,.reading,.columns{grid-template-columns:1fr}.hero{gap:25px;padding-block:30px}.module{padding:16px}.top{font-size:.85rem}nav{gap:10px}}
+@media print{.top,.actions,.lesson-nav,footer,script{display:none}.hero{padding:0 0 20px}details:not([open])>.inside{display:block}details{break-inside:avoid}.module{background:white}body{background:white}}
