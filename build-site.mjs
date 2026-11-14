@@ -11,7 +11,12 @@ const sessions = lessons.map(([name, goal, scratch, flow, steps], i) => {
     items(flow.map(([mins, activity]) => '<strong>' + mins + ' 分鐘</strong> ' + activity)) + '</ol></div><div><h3>' +
     (number <= 8 ? 'Scratch 操作步驟' : 'Scratch 與影片操作') + '</h3><ol>' + items(steps) + '</ol></div></div></div></details>';
 });
-const modules = checkpoints.map(([name, check], i) => '<section class="module"><h3><small>第 ' + (2*i+1) + '–' + (2*i+2) + ' 節</small>' + name + '</h3><p class="check">' + check + '</p>' + sessions.slice(2*i, 2*i+2).join('') + '</section>').join('');
+const scratchLabels = ['地景開場', '三幕自動播放', '點選與問答', '含片尾的正式版', '錄影用版本', '放映用最終版'];
+const modules = checkpoints.map(([name, check], i) => {
+  const end = 2*i+2;
+  const file = 'materials/scratch/madou-lesson-' + String(end).padStart(2, '0') + '.sb3';
+  return '<section class="module"><h3><small>第 ' + (end-1) + '–' + end + ' 節</small>' + name + '</h3><p class="check">' + check + '</p><p><a href="' + file + '" download>下載第 ' + end + ' 節 Scratch 範例｜' + scratchLabels[i] + '（.sb3）</a></p>' + sessions.slice(2*i, 2*i+2).join('') + '</section>';
+}).join('');
 
 const html = `<!doctype html>
 <html lang="zh-Hant-TW">
@@ -24,7 +29,7 @@ const html = `<!doctype html>
 <figure><img src="assets/old-harbor.jpg" width="1672" height="941" alt="繪本插圖，背著黃書包的孩子望向一艘靠岸的木船"><figcaption>AI 生成繪本插圖｜想像中的麻豆舊港</figcaption></figure>
 </section>
 <section id="reading" class="wrap section"><h2>讀一段水堀頭</h2><div class="reading">${reading.map(([name, detail]) => '<article><h3>' + name + '</h3><p>' + detail + '</p></article>').join('')}</div><p class="inline-links"><a href="${sources[1][1]}">查閱吳新榮日記</a> · <a href="${sources[2][1]}">查閱文化部遺址資料</a> · <a href="assets/old-harbor.jpg" download>下載舊港插圖</a></p></section>
-<section id="lessons" class="wrap section"><h2>12 節課怎麼上</h2><p class="intro">每兩節驗收一件階段作品。展開任一節可查看時間分配、教學目標與操作步驟。</p><div class="lesson-nav" aria-label="快速跳到課次">${lessons.map((_, i) => '<a href="#lesson-' + (i+1) + '">第 ' + (i+1) + ' 節</a>').join('')}</div>${modules}</section>
+<section id="lessons" class="wrap section"><h2>12 節課怎麼上</h2><p class="intro">每兩節驗收一件階段作品。展開任一節可查看時間分配、教學目標與操作步驟。</p><p><a href="materials/scratch/madou-all-scratch-projects.zip" download>一次下載六份 Scratch 範例（ZIP）</a>。解壓縮後，在 Scratch 選「檔案 → 從你的電腦上傳」，開啟 .sb3，再按綠旗。</p><div class="lesson-nav" aria-label="快速跳到課次">${lessons.map((_, i) => '<a href="#lesson-' + (i+1) + '">第 ' + (i+1) + ' 節</a>').join('')}</div>${modules}</section>
 <section class="wrap section"><h2>學生可以照著做</h2><dl>${entries([
   ['線索卡｜第 2 節', '地名：水堀頭。史實：水堀頭曾是麻豆港所在。來源：文化部文化資產局。我的描寫：風穿過草叢，草葉沙沙響。'],
   ['三格分鏡｜第 4 節', '現在：「我來到水堀頭，聽見草葉沙沙響。」→ 想像舊港：「我想像一艘載糖的小船正要靠岸。」→ 回到現在：「你能指出剛才哪一幕是我的想像嗎？」'],
